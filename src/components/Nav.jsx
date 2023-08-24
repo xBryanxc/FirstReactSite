@@ -8,7 +8,7 @@ function Nav() {
         {name:'Company', link:'/'},
     ]
 
-    let [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(false)
     return (
       <>
       <div className="shadow-md w-full fixed top-0 left-0">
@@ -30,7 +30,7 @@ function Nav() {
                         </a>
                     </li>)
                 })}
-                <button className="md:bg-gray-700 bg-indigo-600 text-white py-2 px-6 rounded md:ml-8 hover:bg-indigo-500 duration-500 w-full">
+                <button className="md:bg-gray-700 bg-indigo-600 text-white py-2 px-6 rounded-md md:ml-8 duration-500 w-full">
                     Start free trial
                 </button>
             </ul>

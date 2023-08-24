@@ -1,4 +1,28 @@
+import { gql, useMutation } from '@apollo/client';
+import { useState } from 'react';
+
+const createUserMutation = gql`mutation createUser($email: String!){
+    createUser(
+      input: { name: "Bryan", username: "bzuniga", email: $email }
+    ) {
+      id
+      name
+      email
+    }
+  }`
+
 function HeroSection() {
+    const [email, setEmail] = useState('')
+
+    const [createUser] = useMutation(createUserMutation)
+
+    const submitFreeTrial = e => {
+        e.preventDefault()
+
+        createUser({variables: {email}})
+
+        setEmail('')
+    }
     return (
         <>
    <div className="pt-10 bg-gray-900 sm:pt-16 lg:pt-8 lg:pb-14 lg:overflow-hidden">
@@ -22,12 +46,14 @@ function HeroSection() {
                     Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui Lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat.
                   </p>
                   <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
-                    <input type="email" name="email" placeholder="Enter your email" className="appearance-none w-full bg-white border border-transparent rounded-md text-gray-900 placeholder-gray-500 px-8 py-3" />
-                     <div className="rounded-md">
+                    <form onSubmit={submitFreeTrial}>
+                    <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="Enter your email" className="appearance-none w-full bg-white border border-transparent rounded-md text-gray-900 placeholder-gray-500 px-8 py-3" />
+                    <div className="rounded-md">
                         <button className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
                             Start free trial
                         </button>
                     </div>
+                    </form>
                   </div>
                </div>
             </div>

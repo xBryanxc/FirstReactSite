@@ -5,7 +5,6 @@ function App() {
     <>
     <Nav />
     <HeroSection />
-    {/* <div className="bg-gray-900 w-full h-screen"></div> */}
     </>
   )
 }
