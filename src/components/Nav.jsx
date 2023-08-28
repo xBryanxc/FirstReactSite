@@ -1,43 +1,102 @@
-import { useState } from "react"
+import { useState } from "react";
 
 function Nav() {
-    let Links = [
-        {name:'Product', link:'/'},
-        {name:'Features', link:'/'},
-        {name:'Marketplace', link:'/'},
-        {name:'Company', link:'/'},
-    ]
+  let Links = [
+    { name: "Product", link: "/" },
+    { name: "Features", link: "/" },
+    { name: "Marketplace", link: "/" },
+    { name: "Company", link: "/" },
+  ];
 
-    const [open, setOpen] = useState(false)
-    return (
-      <>
-      <div className="shadow-md w-full fixed top-0 left-0">
-        <div className="md:flex items-center justify-between bg-gray-900 py-4 md:px-10 px-7">
-            <div className="font-bold text-2xl cursor-pointer flex items-center text-gray-800">
+  const [open, setOpen] = useState(false);
+
+  return (
+    <header className="relative">
+      <div className="bg-gray-900 pt-6">
+        <nav
+          className="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6"
+          aria-label="Global"
+        >
+          <div className="flex items-center flex-1">
+            <div className="flex items-center justify-between w-full md:w-auto">
+              <div className="font-bold text-2xl cursor-pointer flex items-center text-gray-800">
                 <span className="text-5xl text-indigo-500 mr-1 pt-2">
-                <ion-icon name="logo-react"></ion-icon>
+                  <ion-icon name="logo-react"></ion-icon>
                 </span>
+              </div>
+              <div
+                onClick={() => setOpen(!open)}
+                className="text-3xl absolute right-8 top-6 cursor-pointer md:hidden text-gray-400"
+              >
+                <ion-icon name="menu-outline"></ion-icon>
+              </div>
             </div>
-            <div onClick={() => setOpen(!open)} className="text-3xl absolute right-8 top-6 cursor-pointer md:hidden text-gray-400">
-            <ion-icon name={open ? 'close' : 'menu'}></ion-icon>
+            <div className="hidden space-x-8 md:flex md:ml-10">
+              {Links.map((menuElement) => {
+                return (
+                  <a
+                    href={menuElement.link}
+                    className="text-base font-medium text-white hover:text-gray-300"
+                  >
+                    {menuElement.name}
+                  </a>
+                );
+              })}
             </div>
-            <ul className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static md:bg-gray-900 bg-white md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 md:pr-0 pl-9 pr-9 transition-all duration-500 ease-in ${open ? 'top-20 opacity-100' : 'top-[-490px] opacity-0 md:opacity-100'}`}>
-                {Links.map((menuElement) => {
-                    return (
-                    <li key={menuElement.name} className="md:ml-8 text-xl md:my-0 my-7">
-                        <a href={menuElement.link} className="text-gray-800 hover:text-gray-400 duration-500 md:text-gray-300">
-                            {menuElement.name}
-                        </a>
-                    </li>)
-                })}
-                <button className="md:bg-gray-700 bg-indigo-600 text-white py-2 px-6 rounded-md md:ml-8 duration-500 w-full">
-                    Start free trial
-                </button>
-            </ul>
+          </div>
+          <div className="hidden md:flex md:items-center md:space-x-6">
+            <a
+              href="/register"
+              className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700"
+            >
+              Start free trial
+            </a>
+          </div>
+        </nav>
+      </div>
+      <div
+        className={`absolute top-0 inset-x-0 p-2 transition transform origin-top md:hidden ${
+          open ? "hidden" : ""
+        }`}
+      >
+        <div className="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
+          <div className="px-5 pt-4 flex items-center justify-between">
+            <span className="text-5xl text-indigo-500 mr-1 pt-2">
+              <ion-icon name="logo-react"></ion-icon>
+            </span>
+            <div
+              onClick={() => setOpen(!open)}
+              className="text-3xl absolute right-8 top-6 cursor-pointer md:hidden text-gray-400"
+            >
+              <ion-icon name="close-outline"></ion-icon>
+            </div>
+          </div>
+          <div className="pt-5 pb-6">
+            <div className="px-2 space-y-1">
+              {Links.map((menuElement) => {
+                return (
+                  <a
+                    href={menuElement.link}
+                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
+                  >
+                    {menuElement.name}
+                  </a>
+                );
+              })}
+            </div>
+            <div className="mt-6 px-5">
+              <a
+                href="/register"
+                className="block text-center w-full py-3 px-4 rounded-md shadow bg-indigo-600 text-white font-medium hover:bg-indigo-700"
+              >
+                Start free trial
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-      </>
-    )
-  }
-  
-  export default Nav
+    </header>
+  );
+}
+
+export default Nav;
