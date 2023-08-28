@@ -8,7 +8,7 @@ function Nav() {
     { name: "Company", link: "/" },
   ];
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   return (
     <header className="relative">
@@ -26,7 +26,7 @@ function Nav() {
               </div>
               <div
                 onClick={() => setOpen(!open)}
-                className="text-3xl absolute right-8 top-6 cursor-pointer md:hidden text-gray-400"
+                className="text-3xl absolute right-8 top-1 cursor-pointer md:hidden text-gray-400"
               >
                 <ion-icon name="menu-outline"></ion-icon>
               </div>
