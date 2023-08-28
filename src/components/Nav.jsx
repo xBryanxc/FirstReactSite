@@ -34,6 +34,7 @@ function Nav() {
               {Links.map((menuElement) => {
                 return (
                   <a
+                    key={menuElement.name}
                     href={menuElement.link}
                     className="text-base font-medium text-white hover:text-gray-300"
                   >
@@ -75,6 +76,7 @@ function Nav() {
               {Links.map((menuElement) => {
                 return (
                   <a
+                  key={menuElement.name}
                     href={menuElement.link}
                     className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
                   >

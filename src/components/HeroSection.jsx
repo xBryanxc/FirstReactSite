@@ -2,10 +2,11 @@ import { gql, useMutation } from "@apollo/client";
 import { useState } from "react";
 
 const createUserMutation = gql`
-  mutation createUser($email: String!) {
-    createUser(input: { name: "Bryan", username: "bzuniga", email: $email }) {
+  mutation createUser($email: String!, $username: String!) {
+    createUser(input: { name: "Bryan", username: $username, email: $email }) {
       id
       name
+      username
       email
     }
   }
@@ -14,18 +15,26 @@ const createUserMutation = gql`
 function HeroSection() {
   const [email, setEmail] = useState("");
 
-  const [createUser] = useMutation(createUserMutation);
+  const [createUser, {error}] = useMutation(createUserMutation);
 
   const submitFreeTrial = (e) => {
     e.preventDefault();
 
-    createUser({ variables: { email } });
+    const username = email.split('@')[0]
+
+    createUser({ variables: { email, username } })
+    .then(result => {
+      if (result !== null){
+        console.log("!!")
+      }
+    });
 
     setEmail("");
   };
+
   return (
     <>
-      <div className="pt-10 bg-gray-900 sm:pt-16 lg:pt-8 lg:pb-14 lg:overflow-hidden">
+      <div className="pt-10 bg-gray-900 sm:pt-16 lg:pt-8 lg:pb-14 lg:overflow-hidden min-h-screen">
         <div className="mx-auto max-w-7xl lg:px-8">
           <div className="lg:grid lg:grid-cols-2 lg:gap-8">
             <div className="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 sm:text-center lg:px-0 lg:text-left lg:flex lg:items-center">
@@ -49,6 +58,7 @@ function HeroSection() {
                 <div className="mt-5 sm:mt-8 lg:justify-start">
                   <form onSubmit={submitFreeTrial}>
                     <input
+                      required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       type="email"
