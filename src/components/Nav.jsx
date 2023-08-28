@@ -19,7 +19,7 @@ function Nav() {
           <div className="flex items-center flex-1">
             <div className="flex items-center justify-between w-full md:w-auto">
               <div className="font-bold text-2xl cursor-pointer flex items-center text-gray-800">
-                <span className="text-5xl text-indigo-500 mr-1 pt-2">
+                <span className="text-4xl text-indigo-500 mr-1 pt-2">
                   <ion-icon name="logo-react"></ion-icon>
                 </span>
               </div>
