@@ -46,7 +46,7 @@ function HeroSection() {
                   qui Lorem cupidatat commodo. Elit sunt amet fugiat veniam
                   occaecat fugiat.
                 </p>
-                <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+                <div className="mt-5 sm:mt-8 lg:justify-start">
                   <form onSubmit={submitFreeTrial}>
                     <input
                       value={email}
@@ -55,8 +55,8 @@ function HeroSection() {
                       placeholder="Enter your email"
                       className="appearance-none w-full bg-white border border-transparent rounded-md text-gray-900 placeholder-gray-500 px-8 py-3"
                     />
-                    <div className="rounded-md">
-                      <button className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
+                    <div className="rounded-md py-3">
+                      <button className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-3 md:text-lg md:px-10">
                         Start free trial
                       </button>
                     </div>
