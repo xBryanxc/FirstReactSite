@@ -1,5 +1,6 @@
 import { gql, useMutation } from "@apollo/client";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 const createUserMutation = gql`
   mutation createUser($email: String!, $username: String!) {
@@ -15,19 +16,40 @@ const createUserMutation = gql`
 function HeroSection() {
   const [email, setEmail] = useState("");
 
-  const [createUser, {error}] = useMutation(createUserMutation);
+  const [createUser] = useMutation(createUserMutation);
 
-  const submitFreeTrial = (e) => {
+  const submitFreeTrial = async (e) => {
     e.preventDefault();
 
-    const username = email.split('@')[0]
+    const username = email.split("@")[0];
 
-    createUser({ variables: { email, username } })
-    .then(result => {
-      if (result !== null){
-        console.log("!!")
+    try {
+      const result = await createUser({ variables: { email, username } });
+      
+      if (result.data !== null) {
+        toast.success(`Free trial started, ${username}!`, {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          });
       }
-    });
+    } catch (x) {
+      toast.error(`Error!, ${x}!`, {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
+    }
 
     setEmail("");
   };
@@ -69,6 +91,7 @@ function HeroSection() {
                       <button className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-3 md:text-lg md:px-10">
                         Start free trial
                       </button>
+                      <ToastContainer />
                     </div>
                   </form>
                 </div>
