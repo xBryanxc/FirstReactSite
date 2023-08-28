@@ -65,7 +65,7 @@ function HeroSection() {
               </div>
             </div>
             <div className="mt-12 -mb-10 sm:-mb-48 lg:m-0 lg:relative">
-              <div className="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0">
+              <div className="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0 lg:-ml-40">
                 <img
                   className="w-full lg:absolute lg:h-full lg:w-auto lg:max-w-none"
                   src="https://download.logo.wine/logo/React_(web_framework)/React_(web_framework)-Logo.wine.png"
